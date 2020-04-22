@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {formatDate} from './utils/DateFormat';
+import { formatDate } from './utils/DateFormat';
 export class Confirm extends Component {
-   
 
-  
+
+
     continue = e => {
         const { values } = this.props;
         e.preventDefault();
@@ -20,11 +20,11 @@ export class Confirm extends Component {
         console.log(values);
         return (
             <div>
-                <h1>Account Details</h1><br/>
+                <h1>Account Details</h1><br />
                 <p>Account Number : {values.accountNumber}</p>
                 <p>Product and Services : {values.product}</p>
                 <p>Account Type : {values.accountType}</p>
-                <br/> <br/>
+                <br /> <br />
                 <h2>Account Opening Details</h2>
                 <br />
                 <h3>Nid front side</h3><br />
@@ -64,7 +64,13 @@ export class Confirm extends Component {
                 <h2>Applicant's Signature</h2><br />
                 <img src={values.flag + values.signature} alt="" style={{ width: "150px", height: "120px", border: "1px solid #333" }}></img>
                 <br />
+                <br /> <br />
 
+                <div className="d-flex justify-content-center" >
+
+                    <button className="btn text-white mb-3" onClick={this.back} style={{ borderRadius: "50px", minWidth: "100px", background: "#099e96" }}>Back</button>&nbsp; &nbsp;
+                    <button className="btn text-white mb-3" onClick={this.continue} style={{ borderRadius: "50px", minWidth: "100px", background: "#099e96" }}>Confirm</button>
+                </div>
             </div>
         )
     }

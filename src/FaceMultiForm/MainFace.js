@@ -5,6 +5,7 @@ import PersonalDetails from './PersonalDetails';
 import Signature from './Signature';
 import Nominee from './Nominee';
 import Confirm from './Confirm';
+import Success from './Success';
 import {formatDate} from './utils/DateFormat';
 import { image } from './images/images';
 
@@ -75,7 +76,7 @@ export class MainFace extends Component {
         })
         localStorage.removeItem("accountInfo");
     }catch(e){
-        
+
     }
     }
 
@@ -186,6 +187,10 @@ export class MainFace extends Component {
                         values={values}
                     />
                 )
+
+                case 7:
+                    return <Success/>
+                        
           
         }
 
