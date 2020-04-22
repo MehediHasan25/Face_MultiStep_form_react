@@ -48,15 +48,9 @@ export class NidImage extends Component {
             reader.readAsBinaryString(file);
 
             reader.onload = () => {
-                // console.log(typeof reader.result);
-                // console.log(btoa(reader.result));
+               
                 let base64Image = btoa(reader.result);
-                // this.setState({
-                //   profilePic: base64Image,
-                //   profilePicType: file.type
 
-                //   //nidImage: URL.createObjectURL(event.target.files[0])
-                // });
                 this.props.handleState('NidBack', base64Image);
 
                 this.props.handleState('NidBackType', file.type)
@@ -96,12 +90,12 @@ export class NidImage extends Component {
                             <img
                                 src={values.flag + values.NidFront}
                                 style={{
-                                    margin: "auto", cursor: 'pointer', width: "150px", height: "150px", borderRadius: "50%",
-                                    boxShadow: "1px 2px 3px rgba(0, 0, 0, .1)"
+                                    margin: "auto", cursor: 'pointer', width: "300px", height: "200px"
+                                    
                                 }}
-                                className='rounded-circle img-fluid img-thumbnail'
+                                className='img-fluid img-thumbnail'
                                 id='FrontNidPic'
-                                alt='frontnidpic'
+                                alt=''
                             />
                         </div>
                         <br />
@@ -155,12 +149,12 @@ export class NidImage extends Component {
                             <img
                                 src={values.flag + values.NidBack}
                                 style={{
-                                    margin: "auto", cursor: 'pointer', width: "150px", height: "150px", borderRadius: "50%",
-                                    boxShadow: "1px 2px 3px rgba(0, 0, 0, .1)"
+                                    margin: "auto", cursor: 'pointer', width: "300px", height: "200px"
+                                   
                                 }}
-                                className='rounded-circle img-fluid img-thumbnail'
+                                className='img-fluid img-thumbnail'
                                 id='nidBack'
-                                alt='nidbackpicture'
+                                alt=''
                             />
                         </div>
                         <br />

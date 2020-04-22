@@ -4,12 +4,18 @@ import CaptureImage from './CaptureImage';
 import PersonalDetails from './PersonalDetails';
 import Signature from './Signature';
 import Nominee from './Nominee';
+import Confirm from './Confirm';
+import {formatDate} from './utils/DateFormat';
 import { image } from './images/images';
 
 export class MainFace extends Component {
 
     state = {
         step: 1,
+        //Account
+        accountNumber:'',
+        accountType:'',
+        product:'',
         //Step1
         NidFront: "",
         NidFrontType: '',
@@ -58,6 +64,21 @@ export class MainFace extends Component {
         });
     }
 
+    componentDidMount(){
+        try{
+        const account = localStorage.getItem("accountInfo");
+        const acc = JSON.parse(account);
+        this.setState({
+            accountNumber: acc.accountNumber,
+            accountType: acc.accountType,
+            product:acc.product
+        })
+        localStorage.removeItem("accountInfo");
+    }catch(e){
+        
+    }
+    }
+
     //Handle Fields Change
     handleChange = input => e => {
         this.setState({ [input]: e.target.value });
@@ -68,8 +89,12 @@ export class MainFace extends Component {
         this.setState({ [input]: data });
     }
 
+    handleDate = (input, date) => {
+        this.setState({ [input]: date });
+    }
+
     multiChange = e => {
-        if (["nominee", "relation","photograph"].includes(e.target.className)) {
+        if (["nominee", "relation", "photograph"].includes(e.target.className)) {
             let fields = [...this.state.fields]
             fields[e.target.dataset.id][e.target.className] = e.target.value
             this.setState({ fields })
@@ -78,7 +103,7 @@ export class MainFace extends Component {
 
     addFields = e => {
         this.setState((prevState) => ({
-            fields: [...prevState.fields, { nominee: '', relation: '', photograph:'' }],
+            fields: [...prevState.fields, { nominee: '', relation: '', photograph: '' }],
         }));
     }
 
@@ -90,9 +115,10 @@ export class MainFace extends Component {
     }
 
     render() {
+      
         const { step } = this.state;
-        const { NidFront, NidFrontType, NidBack, NidBackType, flag, faceImage, showCamera, imageFlag, isEnable, nidNo, dob, loading, applicantName, motherName, fatherName, spouseName, gender, profession, mobileNumber, presentAddress, permanentAddress, signature, signatureType,fields } = this.state;
-        const values = { NidFront, NidFrontType, NidBack, NidBackType, flag, faceImage, showCamera, imageFlag, isEnable, nidNo, dob, loading, applicantName, motherName, fatherName, spouseName, gender, profession, mobileNumber, presentAddress, permanentAddress, signature, signatureType,fields }
+        const { NidFront, NidFrontType, NidBack, NidBackType, flag, faceImage, showCamera, imageFlag, isEnable, nidNo, dob, loading, applicantName, motherName, fatherName, spouseName, gender, profession, mobileNumber, presentAddress, permanentAddress, signature, signatureType, fields,accountNumber,accountType,product } = this.state;
+        const values = { NidFront, NidFrontType, NidBack, NidBackType, flag, faceImage, showCamera, imageFlag, isEnable, nidNo, dob, loading, applicantName, motherName, fatherName, spouseName, gender, profession, mobileNumber, presentAddress, permanentAddress, signature, signatureType, fields ,accountNumber,accountType,product }
 
 
         switch (step) {
@@ -127,19 +153,19 @@ export class MainFace extends Component {
                         values={values}
                     />
                 )
-            
-                case 4:
-                    return (
-                        <Nominee
-                            nextStep={this.nextStep}
-                            prevStep={this.prevStep}
-                            onChange={this.multiChange}
-                            handleState={this.handleState}
-                            addFields={this.addFields}
-                            deteteRow={this.deteteRow}
-                            values={values}
-                        />
-                    )
+
+            case 4:
+                return (
+                    <Nominee
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        onChange={this.multiChange}
+                        handleState={this.handleState}
+                        addFields={this.addFields}
+                        deteteRow={this.deteteRow}
+                        values={values}
+                    />
+                )
 
             case 5:
                 return (
@@ -152,38 +178,15 @@ export class MainFace extends Component {
                     />
                 )
 
-            // case 3:
-
-            //     return (
-            //         // city !== 'Dhaka'?
-            //         <MultiFieldForm
-            //             nextStep={this.nextStep}
-            //             prevStep={this.prevStep}
-            //             onChange={this.multiChange}
-            //             onChangeNew= {this.multiChangeTwo}
-            //             addFields={this.addFields}
-            //             addnewFields={this.addnewFields}
-            //             deteteRow={this.deteteRow}
-            //             detetenewFieldsRow={this.detetenewFieldsRow}
-            //             values={values}
-            //         />
-            //         // :
-            //         // <Minor/>
-
-            //         )
-
-
-
-            // case 4:
-            //     return (
-            //         <Confirm
-            //             nextStep={this.nextStep}
-            //             prevStep={this.prevStep}
-            //             values={values}
-            //         />
-            //     )
-            // case 5:
-            //     return <Success />
+            case 6:
+                return (
+                    <Confirm
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        values={values}
+                    />
+                )
+          
         }
 
         return (

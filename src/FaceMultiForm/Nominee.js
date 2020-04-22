@@ -17,24 +17,14 @@ export class Nominee extends Component {
     fileSelectedHandler = (event) => {
         if (event.target.files[0]) {
             let file = event.target.files[0];
-            console.log(file);
+            // console.log(file);
           //  console.log(idx);
             var reader = new FileReader();
             reader.readAsBinaryString(file);
 
             reader.onload = () => {
-                // console.log(typeof reader.result);
-                // console.log(btoa(reader.result));
                 let base64Image = btoa(reader.result);
-                //console.log(base64Image);
-                // this.setState({
-                //   profilePic: base64Image,
-                //   profilePicType: file.type
-
-                //   //nidImage: URL.createObjectURL(event.target.files[0])
-                // });
-                this.props.handleState(this.props.values.fields['phtotgraph'], base64Image);
-              //  this.props.value.fields[idx].push({photograph: base64Image})
+                this.props.handleState(this.props.values.fields['photograph'], base64Image);
             };
             reader.onerror = () => {
                 console.log('there are some problems');
@@ -48,18 +38,13 @@ export class Nominee extends Component {
         e.preventDefault()
 
         console.log(this.props.values.fields);
-        // const obj = this.props.fields;
-        // const arr = [];
-        // const info = obj.map(val => {
-        //   //console.log(val);
-        //   arr.push(val);
-        // })
-        // console.log("myarr", arr);
+        
     }
 
 
     render() {
         const { values, fields, addFields, deteteRow } = this.props;
+        console.log(values.fields[0].photograph);
         return (
             <div>
                 <form onSubmit={this.handleSubmit} onChange={this.props.onChange}>
@@ -73,7 +58,7 @@ export class Nominee extends Component {
                                     <table style={{ border: "1px solid black" }}>
                                         <tr>
                                             <td>
-                                                <label htmlFor={nomineeId}>Nid No</label>
+                                                <label htmlFor={nomineeId}>Nominee</label>
                                                 <input
                                                     type="text"
                                                     name="nominee"
@@ -88,7 +73,7 @@ export class Nominee extends Component {
 
                                         <tr>
                                             <td>
-                                                <label htmlFor={relationId}>Date of Birth</label>
+                                                <label htmlFor={relationId}>Relation</label>
                                                 <input
                                                     type="text"
                                                     name="relation"

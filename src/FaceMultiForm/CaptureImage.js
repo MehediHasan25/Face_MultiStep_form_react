@@ -39,7 +39,8 @@ export class CaptureImage extends Component {
 
     render() {
          const { values, handleState, handleChange, handleDate } = this.props;
-        // console.log(values.nidNo);
+         console.log(values.dob);
+
         return (
             <div className='content'>
         <div className='row '>
@@ -86,7 +87,7 @@ export class CaptureImage extends Component {
                     {/* NID NO */}
 
                     {/* Date of Birth */}
-                    {/* <div className='form-group d-flex justify-content-between'>
+                    <div className='form-group d-flex justify-content-between'>
                     <div className=''>
                       <label htmlFor='dob'>Date of Birth:</label>
                     </div>
@@ -96,14 +97,10 @@ export class CaptureImage extends Component {
                         placeholderText='DD/MM/YYYY'
                         selected={values.dob}
                         dateFormat='dd/MM/yyyy'
-                        onChange={d => {handleState({'dob': d});
-                        //   this.setState({ dob: d });
-                          
-                        }}
-                        
+                        onChange={date => handleDate("dob", date)}   
                       />
                     </div>
-                  </div> */}
+                  </div>
                   {/* Date of Birth */}
 
                    {/* Capture Image */}

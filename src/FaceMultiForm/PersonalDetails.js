@@ -15,6 +15,7 @@ export class PersonalDetails extends Component {
 
     render() {
         const { values, handleChange } = this.props;
+        console.log(values.fatherName);
         return (
             <div className="col-sm-6">
             <div className="col d-flex justify-content-center" style={{ boxShadow: "0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)" }}>

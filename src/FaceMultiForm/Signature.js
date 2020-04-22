@@ -68,12 +68,12 @@ export class Signature extends Component {
                             <img
                                 src={values.flag + values.signature}
                                 style={{
-                                    margin: "auto", cursor: 'pointer', width: "150px", height: "150px", borderRadius: "50%",
-                                    boxShadow: "1px 2px 3px rgba(0, 0, 0, .1)"
+                                    margin: "auto", cursor: 'pointer', width: "300px", height: "200px"
+                                    
                                 }}
-                                className='rounded-circle img-fluid img-thumbnail'
-                                id='FrontNidPic'
-                                alt='frontnidpic'
+                                className='img-fluid img-thumbnail'
+                                id='SignaturePic'
+                                alt=''
                             />
                         </div>
                         <br />
