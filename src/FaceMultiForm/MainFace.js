@@ -14,11 +14,11 @@ export class MainFace extends Component {
     state = {
         step: 1,
         //Account
-        accountNumber:'',
+       
         accountType:'',
         product:'',
         //Step1
-        NidFront: "",
+        NidFront: image,
         NidFrontType: '',
         NidBack: '',
         NidBackType: '',
@@ -94,12 +94,13 @@ export class MainFace extends Component {
         this.setState({ [input]: date });
     }
 
-    multiChange = e => {
+    multiChange = e => {       
         if (["nominee", "relation", "photograph"].includes(e.target.className)) {
             let fields = [...this.state.fields]
             fields[e.target.dataset.id][e.target.className] = e.target.value
             this.setState({ fields })
         }
+       
     }
 
     addFields = e => {
@@ -118,8 +119,8 @@ export class MainFace extends Component {
     render() {
       
         const { step } = this.state;
-        const { NidFront, NidFrontType, NidBack, NidBackType, flag, faceImage, showCamera, imageFlag, isEnable, nidNo, dob, loading, applicantName, motherName, fatherName, spouseName, gender, profession, mobileNumber, presentAddress, permanentAddress, signature, signatureType, fields,accountNumber,accountType,product } = this.state;
-        const values = { NidFront, NidFrontType, NidBack, NidBackType, flag, faceImage, showCamera, imageFlag, isEnable, nidNo, dob, loading, applicantName, motherName, fatherName, spouseName, gender, profession, mobileNumber, presentAddress, permanentAddress, signature, signatureType, fields ,accountNumber,accountType,product }
+        const { NidFront, NidFrontType, NidBack, NidBackType, flag, faceImage, showCamera, imageFlag, isEnable, nidNo, dob, loading, applicantName, motherName, fatherName, spouseName, gender, profession, mobileNumber, presentAddress, permanentAddress, signature, signatureType, fields,accountType,product } = this.state;
+        const values = { NidFront, NidFrontType, NidBack, NidBackType, flag, faceImage, showCamera, imageFlag, isEnable, nidNo, dob, loading, applicantName, motherName, fatherName, spouseName, gender, profession, mobileNumber, presentAddress, permanentAddress, signature, signatureType, fields ,accountType,product }
 
 
         switch (step) {

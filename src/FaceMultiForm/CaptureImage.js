@@ -39,7 +39,7 @@ export class CaptureImage extends Component {
 
     render() {
          const { values, handleState, handleChange, handleDate } = this.props;
-         console.log(values.dob);
+        // console.log(values.dob);
 
         return (
             <div className='content'>

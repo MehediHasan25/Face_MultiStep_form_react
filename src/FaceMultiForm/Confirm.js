@@ -21,7 +21,7 @@ export class Confirm extends Component {
         return (
             <div>
                 <h1>Account Details</h1><br />
-                <p>Account Number : {values.accountNumber}</p>
+               
                 <p>Product and Services : {values.product}</p>
                 <p>Account Type : {values.accountType}</p>
                 <br /> <br />
@@ -52,7 +52,7 @@ export class Confirm extends Component {
                 <br />
 
                 {values.fields.map((val, i) => (
-                    <div>
+                    <div key={i}>
                         <br />
                         <h2>Nominee {i + 1}</h2>
                         <p>Nominee : {values.fields[i].nominee}</p>

@@ -15,20 +15,24 @@ export class Account extends Component {
 
     onSubmit = e =>{
         e.preventDefault();
-        const {accountNumber, product, accountType} = this.state;
+        const { product, accountType} = this.state;
         const obj ={
-            accountNumber,
+            
             product,
             accountType
         }
         localStorage.setItem("accountInfo", JSON.stringify(obj));
         
         this.setState({
-            accountNumber:'',
+         
             accountType:'',
             product:''
         })
-        this.props.history.push('/face-account');
+        if(accountType === 'Joint'){
+            this.props.history.push('/dynamic-comp');
+        }else{
+            this.props.history.push('/face-account');
+        }
     }
 
     render() {
@@ -39,11 +43,7 @@ export class Account extends Component {
                 <div className="col">
                     <h3 className="text-center" style={{ borderBottom: "1px dashed #e2e0e0" }}>Account Information</h3>
                     <form   onSubmit={this.onSubmit}>
-                        {/* Account Number */}
-                        <div className="form-group">
-                            <label htmlFor=""></label>
-                            <input type="text" value={this.state.accountNumber} onChange={this.onChange} className="form-control" name="accountNumber" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Account Number" />
-                        </div>
+                       
 
                          {/* Product and Service */}
                          <div className='form-group'>
@@ -64,7 +64,7 @@ export class Account extends Component {
                   </div>
                         {/* Account Type */}
                         <div className='form-group'>
-                    <label htmlFor="">Product and Service</label>
+                    <label htmlFor="">Account Type</label>
                     <select
                       className='custom-select'
                       value={this.state.accountType}

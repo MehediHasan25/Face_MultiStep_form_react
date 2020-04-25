@@ -44,7 +44,7 @@ export class Nominee extends Component {
 
     render() {
         const { values, fields, addFields, deteteRow } = this.props;
-        console.log(values.fields[0].photograph);
+       // console.log(values.fields);
         return (
             <div>
                 <form onSubmit={this.handleSubmit} onChange={this.props.onChange}>
@@ -54,9 +54,9 @@ export class Nominee extends Component {
                         values.fields.map((val, idx) => {
                             let nomineeId = `nominee-${idx}`, relationId = `relation-${idx}`, photographId = `photograph-${idx}`
                             return (
-                                <div>
+                                <div key={idx} >
                                     <table style={{ border: "1px solid black" }}>
-                                        <tr>
+                                        <tr  key={idx}>
                                             <td>
                                                 <label htmlFor={nomineeId}>Nominee</label>
                                                 <input
@@ -64,6 +64,7 @@ export class Nominee extends Component {
                                                     name="nominee"
                                                     data-id={idx}
                                                     id={nomineeId}
+                                                   
                                                     value={values.fields[idx].nominee}
                                                     className="nominee"
                                                 />
@@ -93,6 +94,12 @@ export class Nominee extends Component {
                                                         <div className='card-body d-flex justify-content-between'>
                                                             <div className=''>
                                                                 <input
+                                                                // type="file"
+                                                                // name="photograph"
+                                                                // data-id={idx}
+                                                                // id={photographId}
+                                                                // value={values.fields[idx].photograph}
+                                                                // className="photograph"
                                                                     type='file'
                                                                     name="photograph"
                                                                     onChange={this.fileSelectedHandler}
